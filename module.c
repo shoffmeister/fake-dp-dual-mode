@@ -5,6 +5,8 @@
 #include <linux/kprobes.h>
 #include <drm/drm_dp_dual_mode_helper.h>
 
+#define pr_fmt(fmt) "%s:%s: " fmt, KBUILD_MODNAME, __func__
+
 static int fake_mode = DRM_DP_DUAL_MODE_NONE;
 
 MODULE_PARM_DESC(fake_mode, "drm_dp_dual_mode_detect return value");
@@ -33,13 +35,15 @@ static int __init fake_dp_dual_mode_init(void)
     return -1;
   }
 
+  pr_info("register_kretprobe success\n");
   return 0;
 }
 
 static void __exit fake_dp_dual_mode_exit(void)
 {
   unregister_kretprobe(&probe);
-}
+  pr_info("unregister_kretprobe complete\n");
+ }
 
 module_init(fake_dp_dual_mode_init)
 module_exit(fake_dp_dual_mode_exit)
