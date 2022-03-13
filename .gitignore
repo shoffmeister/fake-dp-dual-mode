@@ -1,0 +1,12 @@
+.vscode/
+
+.fake_dp_dual_mode.*
+.module.*
+.Module.*
+.modules.*
+*.ko
+*.o
+*.order
+*.symvers
+
+fake_dp_dual_mode.mod*
